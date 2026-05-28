@@ -1,0 +1,88 @@
+{
+  "host": "127.0.0.1",
+  "port": 8080,
+  "cors": true,
+  "delay": 0,
+  "error_rate": 0,
+  "routes": {
+    "/api/health": {
+      "method": "GET",
+      "status": 200,
+      "response": {
+        "status": "healthy",
+        "version": "1.0.0",
+        "timestamp": "{{timestamp}}"
+      }
+    },
+    "/api/users": {
+      "method": "GET",
+      "status": 200,
+      "response": {
+        "data": [
+          {"id": 1, "name": "Alice", "email": "alice@example.com"},
+          {"id": 2, "name": "Bob", "email": "bob@example.com"},
+          {"id": 3, "name": "Charlie", "email": "charlie@example.com"}
+        ],
+        "total": 3
+      }
+    },
+    "/api/users/:id": {
+      "method": "GET",
+      "status": 200,
+      "response": {
+        "id": "{{params.id}}",
+        "name": "User {{params.id}}",
+        "email": "user{{params.id}}@example.com",
+        "profile": {
+          "bio": "This is a mock user profile",
+          "joined": "2024-01-01",
+          "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed={{params.id}}"
+        }
+      }
+    },
+    "/api/products": {
+      "method": "GET",
+      "status": 200,
+      "response": {
+        "products": [
+          {"id": 1, "name": "Laptop", "price": 999.99, "category": "Electronics"},
+          {"id": 2, "name": "Headphones", "price": 199.99, "category": "Electronics"},
+          {"id": 3, "name": "Coffee Mug", "price": 14.99, "category": "Home"}
+        ]
+      }
+    },
+    "/api/products/:id": {
+      "method": "GET",
+      "status": 200,
+      "response": {
+        "id": "{{params.id}}",
+        "name": "Product {{params.id}}",
+        "price": 99.99,
+        "description": "This is a mock product description",
+        "in_stock": true
+      }
+    },
+    "/api/login": {
+      "method": "POST",
+      "status": 200,
+      "response": {
+        "success": true,
+        "token": "mock_jwt_token_{{random}}",
+        "user": {
+          "id": "{{random}}",
+          "username": "{{body.username}}",
+          "email": "{{body.username}}@example.com"
+        },
+        "expires_at": "2024-12-31T23:59:59Z"
+      }
+    },
+    "/api/logout": {
+      "method": "POST",
+      "status": 200,
+      "response": {
+        "success": true,
+        "message": "Logged out successfully"
+      }
+    }
+  }
+}
