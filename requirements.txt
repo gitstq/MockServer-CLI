@@ -1,0 +1,3 @@
+# MockServer-CLI
+# Zero-dependency Python CLI tool for API mocking
+# No external dependencies required - uses only Python standard library
